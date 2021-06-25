@@ -17,10 +17,22 @@ package com.project.model;
 		@NotBlank
 		@Size(max = 20)
 		private String matricule;
+		
 		private Date date_perte;
+		
+		private String immatriculation;
+		
+		
 
+		public String getImmatriculation() {
+			return immatriculation;
+		}
+		public void setImmatriculation(String immatriculation) {
+			this.immatriculation = immatriculation;
+		}
 		@Temporal(TemporalType.TIMESTAMP)
 		private Date createdDate;
+		
 	    private String etat;
 
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -30,12 +42,13 @@ package com.project.model;
 	public DemandeCartegris() {
 		   createdDate = new Date();
 		}
-	public DemandeCartegris(Long id,String matricule, Date date_perte,Date createdDate, String etat) {
+	public DemandeCartegris(Long id,String matricule, Date date_perte,Date createdDate, String etat, String immatriculation) {
 			this.id = id;
 			this.matricule = matricule;
 			this.date_perte = date_perte;
 			this.createdDate=createdDate;		
 			this.etat= etat;
+			this.immatriculation=immatriculation;
 			
 		}
 		public Long getId() {

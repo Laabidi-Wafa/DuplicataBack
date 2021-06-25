@@ -15,7 +15,6 @@ package com.project.model;
 	import org.hibernate.annotations.OnDelete;
 	import org.hibernate.annotations.OnDeleteAction;
 
-
 	@Entity
 	@Table(name = "demandepe")
 	public class Demandepermis {
@@ -25,18 +24,24 @@ package com.project.model;
 	private Long id;
 
 	@NotBlank
-	@Size(max = 20)
-	private String matricule;
-
+	@Size(max = 8)
+	private Number cin;
 
 	private Date date_perte;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdDate;
 
-
 	private String etat;
-
+	
+	private String nom;
+	
+	private String prenom;
+	
+	private String adresse;
+	
+	private Date date;
+	
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(fetch=FetchType.EAGER,optional= true)
 	private Utilisateur Citoyen;
@@ -44,12 +49,45 @@ package com.project.model;
 	public Demandepermis() {
 		createdDate = new Date();
 	}
-	public Demandepermis(Long id, String matricule, Date date_perte, Date createdDate, String etat) {
-		this.id=id;
-		this.matricule = matricule;
-		this.date_perte = date_perte;
-		this.createdDate= createdDate;
-		this.etat= etat;
+	
+	public Number getCin() {
+		return cin;
+	}
+
+	public void setCin(Number cin) {
+		this.cin = cin;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public Long getId() {
@@ -59,12 +97,6 @@ package com.project.model;
 		this.id = id;
 	}
 	
-	public String getMatricule() {
-		return matricule;
-	}
-	public void setMatricule(String matricule) {
-		this.matricule = matricule;
-	}
 	public Date getDate_perte() {
 		return date_perte;
 	}
@@ -89,7 +121,20 @@ package com.project.model;
 	public void setCitoyen(Utilisateur citoyen) {
 		Citoyen = citoyen;
 	}
-
+	public Demandepermis(Long id, @NotBlank @Size(max = 8) Number cin, Date date_perte, Date createdDate, String etat,
+			String nom, String prenom, String adresse, Date date, Utilisateur citoyen) {
+		super();
+		this.id = id;
+		this.cin = cin;
+		this.date_perte = date_perte;
+		this.createdDate = createdDate;
+		this.etat = etat;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.date = date;
+		Citoyen = citoyen;
+	}
 
 
 	}
